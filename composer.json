@@ -1,0 +1,22 @@
+{
+    "name": "programie/parallel-processes",
+    "description": "A library to handle parallel process executions using Symfony Process component",
+    "type": "library",
+    "require": {
+        "symfony/process": "^3.2",
+        "symfony/event-dispatcher": "^3.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michael Wieland",
+            "email": "parallel-processes@selfcoders.com",
+            "homepage": "https://selfcoders.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "": "src/main/php"
+        }
+    }
+}
