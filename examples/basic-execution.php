@@ -8,7 +8,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
 
 $eventDispatcher = new EventDispatcher;
 
-$eventDispatcher->addListener(Events::PROCESS_FINISHED, function() {
+$eventDispatcher->addListener(Events::PROCESS_FINISHED, function () {
     fwrite(STDERR, "*** Process finished\n");
 });
 
@@ -29,7 +29,8 @@ $executor->add($process2);
 $executor->add($process3);
 $executor->add($process4);
 
-$executor->run(function ($type, $buffer) {
+$executor->run(function ($type, $buffer, Process $process) {
+    fwrite(STDERR, "*** Got data from process " . $process->getCommandLine() . "\n");
     if ($type === Process::ERR) {
         fwrite(STDERR, $buffer);
     } else {

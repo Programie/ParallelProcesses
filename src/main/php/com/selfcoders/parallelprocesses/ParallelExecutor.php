@@ -17,12 +17,16 @@ class ParallelExecutor
     }
 
     /**
-     * @param callable|null $callback
+     * @param callable|null $callback A function to call once data is available. Example function: function myCallback($type, $buffer, Process $process)
      */
     public function start(callable $callback = null)
     {
         foreach ($this->processes as $process) {
-            $process->start($callback);
+            $process->start(function ($type, $buffer) use ($callback, $process) {
+                if (is_callable($callback)) {
+                    $callback($type, $buffer, $process);
+                }
+            });
         }
     }
 
