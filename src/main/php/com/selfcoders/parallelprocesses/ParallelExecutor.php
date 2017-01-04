@@ -34,10 +34,8 @@ class ParallelExecutor
         $this->start($callback);
 
         do {
-            $this->processCycle();
-
             usleep(1000);
-        } while ($this->countRunning());
+        } while ($this->processCycle());
     }
 
     /**
@@ -56,17 +54,26 @@ class ParallelExecutor
         return $running;
     }
 
+    /**
+     * @return bool
+     */
     public function processCycle()
     {
+        $foundRunning = false;
+
         /**
          * @var $process Process
          */
         foreach ($this->processes as $process) {
+            $process->process();
+
             if (!$process->isRunning()) {
                 continue;
             }
 
-            $process->process();
+            $foundRunning = true;
         }
+
+        return $foundRunning;
     }
 }
