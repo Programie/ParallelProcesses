@@ -1,0 +1,8 @@
+name: Update Packagist
+
+on: push
+
+jobs:
+  update:
+    uses: programie/Workflows/.github/workflows/update-packagist.yml@main
+    secrets: inherit
