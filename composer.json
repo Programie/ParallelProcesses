@@ -3,7 +3,7 @@
     "description": "A library to handle parallel process executions using Symfony Process component",
     "type": "library",
     "require": {
-        "symfony/process": "^3.2",
+        "symfony/process": "^3.2 || ^5.0",
         "symfony/event-dispatcher": "^3.2"
     },
     "license": "MIT",
